@@ -1,5 +1,4 @@
 # Python Version 2.7.3
-
 # File: minesweeper.py
 
 from tkinter import *
@@ -10,18 +9,22 @@ import platform
 import time
 from datetime import time, date, datetime
 
+#지뢰찾기 창의 크기
 SIZE_X = 10
 SIZE_Y = 10
 
+#뭔지 아직 모르겠음
 STATE_DEFAULT = 0
 STATE_CLICKED = 1
 STATE_FLAGGED = 2
 
+#마우스 왼쪽 클릭, 오른쪽 깃발 세우기
 BTN_CLICK = "<Button-1>"
 BTN_FLAG = "<Button-2>" if platform.system() == 'Darwin' else "<Button-3>"
 
 window = None
 
+#
 class Minesweeper:
 
     def __init__(self, tk):
@@ -38,18 +41,19 @@ class Minesweeper:
         for i in range(1, 9):
             self.images["numbers"].append(PhotoImage(file = "images/tile_"+str(i)+".gif"))
 
-        # set up frame
+        # set up frame 
         self.tk = tk
         self.frame = Frame(self.tk)
         self.frame.pack()
 
-        # set up labels/UI
+        # set up labels/UI =>지뢰찾기 창 UI 시간, 지뢰 갯수, 깃발
         self.labels = {
             "time": Label(self.frame, text = "00:00:00"),
             "mines": Label(self.frame, text = "Mines: 0"),
             "flags": Label(self.frame, text = "Flags: 0")
         }
-        self.labels["time"].grid(row = 0, column = 0, columnspan = SIZE_Y) # top full width
+        #GUI 작업
+        self.labels["time"].grid(row = 0, column = 0, columnspan = SIZE_Y) # top full width 
         self.labels["mines"].grid(row = SIZE_X+1, column = 0, columnspan = int(SIZE_Y/2)) # bottom left
         self.labels["flags"].grid(row = SIZE_X+1, column = int(SIZE_Y/2)-1, columnspan = int(SIZE_Y/2)) # bottom right
 
